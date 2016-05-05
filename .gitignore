@@ -1,0 +1,6 @@
+
+coverage/
+.sass-cache/
+.idea/
+.tmp/
+dist/
