@@ -11,9 +11,22 @@
       .state('home', {
         url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      });
+        controller: 'MainCtrl',
+        controllerAs: 'vm'
+      })
+      .state('categories', {
+        url: '/',
+        templateUrl: 'app/categories/categories.html',
+        controller: 'CategoriesCtrl',
+        controllerAs: 'vm'
+      })
+      .state('posts', {
+        url: '/',
+        templateUrl: 'app/posts/posts.html',
+        controller: 'PostsCtrl',
+        controllerAs: 'vm'
+      })
+
 
     $urlRouterProvider.otherwise('/');
   }
