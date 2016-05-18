@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('Adminular')
+    .module('adminular')
     .config(config);
 
   /** @ngInject */

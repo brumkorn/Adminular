@@ -1,0 +1,12 @@
+{
+  "name": "elite-schedule-ams-setup",
+  "version": "0.0.0",
+  "description": "",
+  "main": "elite-schedule-ams-seed-data.js",
+  "dependencies": {
+    "q": "^1.0.1",
+    "request": "^2.40.0",
+    "firebase": "^2.2.1"
+  },
+  "author": "Steve Michelotti"
+}

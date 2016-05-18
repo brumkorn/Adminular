@@ -1,0 +1,43 @@
+<div>
+  <h2 class="page-title">Admin Home</h2>
+
+  <div class="jumbotron">
+    <div>
+      <p>
+        To start using Adminular, go to <a ui-sref="dashboard">Dashboard</a> first. You will configure
+        <span class="bold-text">Posts</span> and <span class="bold-text">Categories</span> for your website.
+      </p>
+
+    </div>
+  </div>
+
+  <p>
+    <button class="btn btn-info" ng-click="vm.notesCollapsed = !vm.notesCollapsed"
+            uib-popover="Click here for additional information" popover-trigger="mouseenter" popover-placement="right">
+      Additional notes
+    </button>
+  </p>
+  <div uib-collapse="vm.notesCollapsed">
+    <div class="well in">
+      <h4>Screens:</h4>
+      <dl class="dl-horizontal">
+        <dt>Adminular Home</dt>
+        <dd>Basic Home screen</dd>
+        <dt>Dashboard</dt>
+        <dd>This is your main starting point</dd>
+        <dd>
+          Dashboard consists of:
+          <ol>
+            <li>Posts</li>
+            <li>Categories</li>
+          </ol>
+        </dd>
+        <dt>Settings</dt>
+        <dd>Settings and preferences controls here</dd>
+        <dt>Help</dt>
+        <dd>If you have questions, go here</dd>
+      </dl>
+    </div>
+  </div>
+
+</div>

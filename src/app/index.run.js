@@ -2,11 +2,13 @@
   'use strict';
 
   angular
-    .module('Adminular')
+    .module('adminular')
     .run(runBlock);
 
+  runBlock.$inject = ['$state', '$log'];
+
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($state, $log) {
 
     $log.debug('runBlock end');
   }
