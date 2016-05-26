@@ -1,0 +1,57 @@
+<div>
+  <table class="table table-bordered table-hover table-striped">
+    <thead>
+    <tr>
+      <th><h3 class="table-header">Comments for "{{vm.postData.title}}"</h3>
+      </th>
+      <th class="col-sm-2 col-xs-2">
+        <button type="submit" class="btn btn-primary btn-sm btn-block"
+                ng-click="vm.generateComment()"
+                uib-tooltip="Generating comments for testing purposes"
+                tooltip-placement="left">
+          <span class="glyphicon glyphicon-plus"></span> Generate
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr ng-repeat="comment in vm.commentsData">
+
+      <td ng-hide="vm.currentEdit[comment.$id]">
+        <small>{{comment.text}}</small>
+      </td>
+      <td ng-show="vm.currentEdit[comment.$id]">
+        <textarea type="text" class="form-control" ng-model="vm.itemToEdit.text"
+                  style="height: 100%"></textarea>
+      </td>
+      <td>
+        <div class="btn-group" uib-dropdown
+             ng-hide="vm.currentEdit[comment.$id]">
+          <button class="btn btn-default btn-sm btn-block uib-dropdown-toggle"
+                  uib-dropdown-toggle type="button">
+            Action <span class="caret"></span>
+          </button>
+
+
+          <ul class="uib-dropdown-menu dropdown-menu-right" role="menu">
+            <li><a ng-click="vm.editItem(comment)">Edit</a></li>
+            <li><a ng-click="vm.deleteItem(comment)">Delete</a></li>
+          </ul>
+        </div>
+        <button class="btn btn-success" ng-show="vm.currentEdit[comment.$id]"
+                ng-click="vm.saveItem(comment)">Save
+        </button>
+        <button class="btn btn-danger" ng-show="vm.currentEdit[comment.$id]"
+                ng-click="vm.cancelEdit(comment)">Cancel
+        </button>
+        <p>Author: {{comment.author.name}}</p>
+
+        <p>When: {{comment.created | date : "MM/dd/yyyy 'at' h:mma" }}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
