@@ -4,33 +4,62 @@
 (function () {
   'use strict';
 
-  angular.module('eliteAdmin').factory('stateWatcherService', stateWatcherService);
-
-  stateWatcherService.$inject = ['$rootScope'];
-
-  function stateWatcherService($rootScope) {
-
-    $rootScope.$on('$stateChangeStart', stateChangeStart);
-    $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
-    $rootScope.$on('$stateChangeError', stateChangeError);
-    $rootScope.$on('$stateNotFound', stateNotFound);
+  angular.module('adminular').factory('stateWatcherService', stateWatcherService);
 
 
-    function stateChangeStart(event, toState, toParams, fromState, fromParams){
-      console.log('state change start', event, toState, toParams, fromState, fromParams);
-    }
+  function stateWatcherService($transitions, $log, $state) {
 
-    function stateChangeSuccess(event, toState, toParams, fromState, fromParams){
-      console.log('state change success', event, toState, toParams, fromState, fromParams);
-    }
+    $transitions.onEnter({to: '*'}, function ($transition$, $state$) {
+      $log.info(
+        'transition enter ', $transition$.toString(),
+        "to state:", $transition$.to(),
+        "params", $transition$.params(),
+        "from state:", $transition$.from(),
+        "params", $transition$.params('from'),
+        "resolves", $transition$.resolves(),
+        "state", $state$
+      );
+    });
 
-    function stateChangeError(event, toState, toParams, fromState, fromParams, error){
-      console.log('state change error', event, toState, toParams, fromState, fromParams, error);
-    }
+    $transitions.onBefore({to: '*'}, function ($transition$) {
+      $log.info(
+        'transition before ', $transition$.toString(),
+        "to state:", $transition$.to(),
+        "params", $transition$.params(),
+        "from state:", $transition$.from(),
+        "params", $transition$.params('from'),
+        "resolves", $transition$.resolves()
+      );
+    });
 
-    function stateNotFound(event, unfoundState, fromState, fromParams){
-      console.log('state not found', event, unfoundState, fromState, fromParams);
-    }
+    $transitions.onSuccess({to: '*'}, function ($transition$) {
+      $log.info(
+        'transition success ', $transition$.toString(),
+        "to state:", $transition$.to(),
+        "params", $transition$.params(),
+        "from state:", $transition$.from(),
+        "params", $transition$.params('from'),
+        "resolves", $transition$.resolves()
+      );
+    });
+
+    $transitions.onError({to: '*'}, function ($transition$, $error$) {
+      $log.error(
+        'transition error ', $transition$.toString(),
+        "to state:", $transition$.to(),
+        "params", $transition$.params(),
+        "from state:", $transition$.from(),
+        "params", $transition$.params('from'),
+        "resolves", $transition$.resolves(),
+        "error", $error$
+      );
+
+      if($error$ === "AUTH_REQUIRED") {
+        $log.warn("You not login, redirect to login page");
+        $state.go('login');
+      }
+    });
+
 
     var service = {};
     return service;

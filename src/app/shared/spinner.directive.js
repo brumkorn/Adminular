@@ -1,27 +1,30 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular.module('adminular').directive('spinner', spinner);
+  angular
+    .module('adminular')
+    .directive('spinner', spinner);
 
-    function spinner($log, $window) {
-        var directive = {
-            link: link,
-            restrict: 'A'
-        };
-        return directive;
+  function spinner($log, $window) {
+    var directive = {
+      link: link,
+      restrict: 'A'
+    };
 
-        function link(scope, element, attrs) {
-            scope.spinner = null;
-            scope.$watch(attrs.spinner, function (options) {
+    return directive;
 
+    function link(scope, element, attrs) {
+      scope.spinner = null;
+      scope.$watch(attrs.spinner, function (options) {
 
-              $log.debug(scope.spinner);
-                if (scope.spinner) {
-                    scope.spinner.stop();
-                }
-                scope.spinner = new $window.Spinner(options);
-                scope.spinner.spin(element[0]);
-            }, true);
+        //$log.debug("***Launch SPINNER:",scope.spinner, attrs);
+        if (scope.spinner) {
+          scope.spinner.stop();
         }
+        scope.spinner = new $window.Spinner(options);
+        scope.spinner.spin(element[0]);
+      }, true);
     }
+  }
 })();
+

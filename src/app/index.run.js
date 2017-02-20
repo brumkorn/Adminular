@@ -5,11 +5,10 @@
     .module('adminular')
     .run(runBlock);
 
-  runBlock.$inject = ['$state', '$log'];
+
 
   /** @ngInject */
-  function runBlock($state, $log) {
-
+  function runBlock($log, $state, stateWatcherService) {
     $log.debug('runBlock end');
   }
 

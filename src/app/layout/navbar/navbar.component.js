@@ -9,19 +9,19 @@
       controllerAs: 'vm'
     });
 
-    /** @ngInject */
-    function NavbarController($log, $scope, $firebaseAuthService, $state) {
-      var vm = this;
-      vm.navCollapsed = true;
+  /** @ngInject */
+  function NavbarController($log, $scope, $firebaseAuthService, $state) {
+    var vm = this;
+    vm.navCollapsed = true;
 
-      vm.$onInit = function () {
-      };
+    vm.$onInit = function () {
+    };
 
-      $scope.$watch(function () {
-        return $firebaseAuthService.$getAuth();
-      }, function (value) {
-        vm.loggedIn = !!value;
-      })
-    }
+    $scope.$watch(function () {
+      return $firebaseAuthService.$getAuth();
+    }, function (value) {
+      vm.loggedIn = !!value;
+    })
+  }
 
 })();
